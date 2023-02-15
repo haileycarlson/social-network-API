@@ -1,3 +1,5 @@
+const reactionSchema = require('./Reaction')
+
 const thoughtSchema = new userSchema({
   thoughtText: {
     type: String,
@@ -8,15 +10,15 @@ const thoughtSchema = new userSchema({
   createdAt: {
     type: Date,
     default: Date.now,
-    //getter method??
+    get: (date) => {
+      if (date) return date.toISOString().split('T')[0]
+    },
   },
   username: {
     type: String,
     required: true,
   },
-  reactions: {
-    //array of nested documents from reactionSchema
-  },
+  reactions: [reactionSchema],
 })
 
 userSchema.virtual('reactionCount').get(function () {
@@ -25,4 +27,4 @@ userSchema.virtual('reactionCount').get(function () {
 
 const Thought = model('thought', thoughtSchema)
 
-model.exports = Thought
+module.exports = Thought

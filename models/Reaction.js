@@ -1,8 +1,10 @@
-const reactionSchema = new userSchema(
+const reactionSchema = new Schema(
   {
     reactionId: {
       //Mongoose's ObjectId data type
       //Default value set to a new ObjectId
+      type: userSchema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
     },
     reactionBody: {
       type: String,
@@ -16,7 +18,6 @@ const reactionSchema = new userSchema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //Is this right for getter method to timestamp?
       get: (date) => {
         if (date) return date.toISOString().split('T')[0]
       },
@@ -28,3 +29,5 @@ const reactionSchema = new userSchema(
     },
   },
 )
+
+module.exports = reactionSchema

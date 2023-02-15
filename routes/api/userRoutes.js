@@ -3,21 +3,17 @@ const {
   getUser,
   createUser,
   getSingleUser,
-  updateSingleUser,
-  deleteSingleUser,
+  updateUser,
+  deleteUser,
   addFriend,
   removeFriend,
-} = require('')
-
+} = require('../../controllers/userController')
+// are these supposed to be in the same one??????
 // /api/user
 router.route('/').get(getUser).post(createUser)
 
 // /api/user/:userId
-router
-  .route('/:userId')
-  .get(getSingleUser)
-  .put(updateSingleUser)
-  .delete(deleteSingleUser)
+router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser)
 
 // /api/users/:userId/friends/:friendId
 router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend)
