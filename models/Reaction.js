@@ -1,11 +1,7 @@
+const { Schema, Types } = require('mongoose')
+
 const reactionSchema = new Schema(
   {
-    reactionId: {
-      //Mongoose's ObjectId data type
-      //Default value set to a new ObjectId
-      type: userSchema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
     reactionBody: {
       type: String,
       required: true,
