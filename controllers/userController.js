@@ -29,7 +29,7 @@ module.exports = {
       { runValidators: true, new: true },
     )
       .then((user) =>
-        !video
+        !user
           ? res.status(404).json({ message: 'No user with this id!' })
           : res.json(user),
       )
@@ -55,7 +55,7 @@ module.exports = {
     console.log(req.body)
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.body } },
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true },
     )
       .then((user) =>
