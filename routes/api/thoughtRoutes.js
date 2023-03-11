@@ -13,6 +13,7 @@ const {
 router.route('/').get(getThoughts)
 
 // /api/thoughts/:thoughtId
+// Router path for thought options
 router
   .route('/:thoughtId')
   .get(singleThought)
@@ -21,8 +22,10 @@ router
   .delete(removeThought)
 
 // /api/thoughts/:thoughtId/reactions
+// Router path for posting rections
 router.route('/:thoughtId/reactions').post(addReaction)
 
+// Router path for deleting reaction with id
 router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction)
 
 module.exports = router

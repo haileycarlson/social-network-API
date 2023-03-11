@@ -1,5 +1,6 @@
 const { Schema, Types } = require('mongoose')
 
+// What is required for reaction
 const reactionSchema = new Schema(
   {
     reactionBody: {

@@ -1,5 +1,6 @@
 const { Schema, Types, model } = require('mongoose')
 
+// What is required for user 
 const userSchema = new Schema({
   username: {
     type: String,
@@ -28,6 +29,7 @@ userSchema.virtual('friendCount').get(function () {
   return this.friends.length
 })
 
+// Creating a user model to be used
 const User = model('user', userSchema)
 
 module.exports = User

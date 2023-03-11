@@ -1,11 +1,13 @@
 const User = require('../models/User')
 
 module.exports = {
+  // Get a user
   getUser(req, res) {
     User.find()
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err))
   },
+  // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -22,6 +24,7 @@ module.exports = {
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err))
   },
+  // Update a user
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -38,6 +41,7 @@ module.exports = {
         res.status(500).json(err)
       })
   },
+  // Delete a user
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -50,6 +54,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err))
   },
+  // Add a friend
   addFriend(req, res) {
     console.log('You are adding a friend!')
     console.log(req.body)
@@ -65,6 +70,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err))
   },
+  // Delete a friend
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -80,10 +86,3 @@ module.exports = {
   },
 }
 
-// A getUser,
-//  A createUser,
-//  A getSingleUser,
-//  A updateSingleUser,
-// A  deleteSingleUser,
-//   addFriend,
-//   removeFriend
